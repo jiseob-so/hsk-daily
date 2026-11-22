@@ -5,7 +5,7 @@ const initialRender=render;
 let studyPool=[],studyTitle='',studyHidden=false,chosenLetter='A',letterBatch=1;
 const firstLetter=w=>w.pinyin.normalize('NFD').replace(/[\u0300-\u036f]/g,'').charAt(0).toUpperCase();
 const letters=[...new Set(WORDS.map(firstLetter))].sort();
-let randomLetters=new Set(['A']);
+let randomLetters=new Set();
 let alphabetMode='mix';
 home=function(){initialHome();
  const box=document.createElement('section');box.className='card section';box.id='study-controls';
