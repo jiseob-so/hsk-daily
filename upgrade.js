@@ -5,3 +5,12 @@ const upgradedStats=statsPage;statsPage=function(){upgradedStats();const c=docum
 const originalRow=wordRow;wordRow=function(w){return originalRow(w)+`<details class="word-detail"><summary>한자 풀이</summary>${hanjaExplanation(w)||'<p>한국식 훈음 자료 없음</p>'}</details>`};
 if('serviceWorker' in navigator && location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(console.warn);
 render();
+
+
+const examplesV32=[
+['阿姨今天来看我。','이모가 오늘 나를 보러 오세요.'],['啊，原来是你！','아, 너였구나!'],['他比我矮。','그는 나보다 키가 작다.'],['我爱我的家人。','나는 가족을 사랑한다.'],['我的爱好是看书。','내 취미는 독서다.'],['这里很安静。','이곳은 매우 조용하다.'],['我八点起床。','나는 여덟 시에 일어난다.'],['请把门关上。','문을 닫아 주세요.'],['爸爸在做饭。','아빠가 요리하고 있다.'],['我们走吧。','우리 가자.'],['她穿着白衣服。','그녀는 흰 옷을 입고 있다.'],['这本书一百元。','이 책은 100위안이다.'],['我们在同一个班。','우리는 같은 반이다.'],['他正在搬桌子。','그는 책상을 옮기고 있다.'],['我等了半个小时。','나는 30분을 기다렸다.'],['你有什么办法？','너는 무슨 방법이 있니?'],['他在办公室工作。','그는 사무실에서 일한다.'],['你能来帮忙吗？','와서 도와줄 수 있니?'],['谢谢你帮助我。','나를 도와줘서 고마워.'],['请把礼物包起来。','선물을 포장해 주세요.'],['我吃饱了。','나는 배불리 먹었다.'],['爷爷每天看报纸。','할아버지는 매일 신문을 읽으신다.'],['桌上有一个杯子。','탁자 위에 컵이 하나 있다.'],['北方的冬天很冷。','북쪽의 겨울은 매우 춥다.'],['我明天去北京。','나는 내일 베이징에 간다.'],['我的自行车被他骑走了。','내 자전거를 그가 타고 갔다.'],['我买了两本书。','나는 책 두 권을 샀다.'],['我的鼻子有点疼。','코가 조금 아프다.'],['今天比昨天冷。','오늘은 어제보다 춥다.'],['这道题比较简单。','이 문제는 비교적 쉽다.']];
+function exampleV32(w){const e=examplesV32[w.id-1];if(!e)return '';return '<div class="card section"><small>중국어 예문 · 한국어 해석</small><p lang="zh">'+esc(e[0])+'</p><p>'+esc(e[1])+'</p></div>';}
+const rowV32=wordRow;wordRow=function(w){return rowV32(w)+exampleV32(w);};
+const quizV32=quiz;quiz=function(){quizV32();const q=state.session;if(q&&q.answered&&q.items[q.index]){const w=WORDS[q.items[q.index].id-1];const target=main.querySelector('#next');if(target)target.insertAdjacentHTML('beforebegin',exampleV32(w));}};
+const homeV32=home;home=function(){homeV32();const c=document.createElement('section');c.className='card section';c.innerHTML='<h2>앱 설치 안내</h2><p>크롬 메뉴 ⋮ → 앱 설치 또는 홈 화면에 추가. 설치하면 독립 화면에서 실행됩니다.</p><small>예문 제공 범위: DAY 01 (30개)</small>';main.append(c);};
+render();
